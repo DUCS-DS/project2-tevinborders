@@ -97,9 +97,11 @@ while not quit:
         node.reflect()
         node.draw()
 
-    for i, node1 in enumerate(nodes):
-        x1, y1 = node1.x, node1.y
-        for node2 in nodes[i + 1 :]:
+    nodesSort = sorted(nodes, key = lambda node: node.x)
+
+    for i, node1 in enumerate(nodesSort):
+        for node2 in nodesSort[i + 1 :i + 21]:
+            x1, y1 = node1.x, node1.y
             x2, y2 = node2.x, node2.y
             d_squared = (x1 - x2) ** 2 + (y1 - y2) ** 2
             if d_squared < thresh:
@@ -112,3 +114,7 @@ while not quit:
     print(clock.get_fps())
 
 pygame.quit()
+
+
+#Q1: Before starting lab 2 I was running at 25 fps, after doing the cap I was running at around 43 fps. 
+#Q2: bigO = (snlog(n))
